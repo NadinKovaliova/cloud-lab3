@@ -36,3 +36,11 @@ jobs:
           image-ref: 'cloud-lab3:latest'
           format: 'table'
           exit-code: '0'
+
+      - name: Run OWASP ZAP DAST scan
+        uses: zaproxy/action-full-scan@v0.10.0
+        with:
+          target: 'https://cloud-lab3-production.up.railway.app'
+          rules_file_name: '.zap/rules.tsv'
+          cmd_options: '-a'
+        continue-on-error: true
